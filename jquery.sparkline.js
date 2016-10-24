@@ -2,7 +2,7 @@
 *
 * jquery.sparkline.js
 *
-* v2.3.2
+* v2.4.1
 * (c) Splunk, Inc
 * Contact: Gareth Watts (gareth@splunk.com)
 * http://omnipotent.net/jquery.sparkline/
@@ -2349,6 +2349,7 @@
                 options = this.options,
                 radius = this.radius,
                 borderWidth = options.get('borderWidth'),
+                donutWidth = options.get('donutWidth'),
                 shape, i;
 
             if (!pie._super.render.call(this)) {
@@ -2364,6 +2365,10 @@
                     this.valueShapes[i] = shape.id; // store just the shapeid
                     this.shapes[shape.id] = i;
                 }
+            }
+            if (donutWidth) {
+                target.drawCircle(radius, radius, radius - donutWidth, options.get('donutColor'), 
+                    options.get('donutColor'), 0).append();
             }
             target.render();
         }
