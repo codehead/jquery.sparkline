@@ -2,7 +2,7 @@
 *
 * jquery.sparkline.js
 *
-* v2.3.2
+* v2.4.1
 * (c) Splunk, Inc
 * Contact: Gareth Watts (gareth@splunk.com)
 * http://omnipotent.net/jquery.sparkline/

@@ -1,6 +1,6 @@
 {
   "name": "jquery-sparkline",
-  "version": "2.3.2",
+  "version": "2.4.1",
   "description": "jQuery Sparklines",
   "main": "jquery.sparkline.js",
   "scripts": {
