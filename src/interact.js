@@ -24,9 +24,9 @@
             var $canvas = $(canvas.canvas);
             this.canvas = canvas;
             this.$canvas = $canvas;
-            $canvas.mouseenter($.proxy(this.mouseenter, this));
-            $canvas.mouseleave($.proxy(this.mouseleave, this));
-            $canvas.click($.proxy(this.mouseclick, this));
+            $canvas.on('mouseenter', $.proxy(this.mouseenter, this));
+            $canvas.on('mouseleave', $.proxy(this.mouseleave, this));
+            $canvas.on('click', $.proxy(this.mouseclick, this));
         },
 
         reset: function (removeTooltip) {
