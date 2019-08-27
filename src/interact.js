@@ -24,9 +24,9 @@
             var $canvas = $(canvas.canvas);
             this.canvas = canvas;
             this.$canvas = $canvas;
-            $canvas.mouseenter($.proxy(this.mouseenter, this));
-            $canvas.mouseleave($.proxy(this.mouseleave, this));
-            $canvas.click($.proxy(this.mouseclick, this));
+            $canvas.on('mouseenter', this.mouseenter.bind(this));
+            $canvas.on('mouseleave', this.mouseleave.bind(this));
+            $canvas.on('click', this.mouseclick.bind(this));
         },
 
         reset: function (removeTooltip) {
@@ -46,7 +46,7 @@
 
         mouseenter: function (e) {
             $(document.body).unbind('mousemove.jqs');
-            $(document.body).bind('mousemove.jqs', $.proxy(this.mousemove, this));
+            $(document.body).bind('mousemove.jqs', this.mousemove.bind(this));
             this.over = true;
             this.currentPageX = e.pageX;
             this.currentPageY = e.pageY;
@@ -88,10 +88,10 @@
             this.currentPageX = e.pageX;
             this.currentPageY = e.pageY;
             this.currentEl = e.target;
+            this.updateDisplay();
             if (this.tooltip) {
                 this.tooltip.updatePosition(e.pageX, e.pageY);
             }
-            this.updateDisplay();
         },
 
         updateDisplay: function () {
@@ -166,7 +166,7 @@
             this.offsetTop = offset.top;
             this.hidden = true;
             $(window).unbind('resize.jqs scroll.jqs');
-            $(window).bind('resize.jqs scroll.jqs', $.proxy(this.updateWindowDims, this));
+            $(window).bind('resize.jqs scroll.jqs', this.updateWindowDims.bind(this));
             this.updateWindowDims();
         },
 
@@ -195,7 +195,8 @@
                 .css({
                     'width': this.width,
                     'height': this.height,
-                    'visibility': 'visible'
+                    'visibility': 'visible',
+                    'pointer-events': 'none'
                 });
             if (this.hidden) {
                 this.hidden = false;
